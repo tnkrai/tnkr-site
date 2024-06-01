@@ -1,4 +1,5 @@
 import Button from "@/components/ui/Button";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -44,6 +45,23 @@ export default function Home() {
             tinkering with the open source knowledge.
           </li>
         </ol>
+      </div>
+
+      <div className="flex w-full h-full gap-10 overflow-x-scroll">
+        <Image
+          src="/images/vision-pro.png"
+          height={560}
+          width={560}
+          alt="Apple Vision Pro"
+          className="rounded-lg shrink-0"
+        />
+        <Image
+          src="/images/vision-pro-teardown.png"
+          height={560}
+          width={560}
+          alt="Apple Vision Pro Teardown"
+          className="rounded-lg shrink-0"
+        />
       </div>
     </main>
   );
