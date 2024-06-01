@@ -77,6 +77,6 @@
   }
   p,
   li {
-    @apply text-secondary-foreground;
+    @apply text-secondary-foreground leading-7;
   }
 }
