@@ -18,7 +18,7 @@ export default function Home() {
 
       <div className="flex flex-col gap-y-4">
         <div className="max-w-md">
-          <h1 className="mb-2">
+          <h1 className="mb-5">
             Open Source Robots - <span className="text-green-500">Idea</span>
           </h1>
           <p>

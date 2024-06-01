@@ -75,6 +75,11 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  h1 {
+    @apply text-xl;
+  }
+
   p,
   li {
     @apply text-secondary-foreground leading-7;
