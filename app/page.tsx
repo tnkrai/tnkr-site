@@ -1,11 +1,10 @@
 import Button from "@/components/ui/Button";
-import Image from "next/image";
-import ImageGroup from "./components/ImageGroup";
+import ImageGroup from "@/components/ImageGroup";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen gap-16 flex-col p-24">
-      <h1>
+      <h1 className="max-w-md">
         Tnkr.ai is a tool for exploring the source knowledge of any technology.
         We believe that every piece of technology, old or new, has a unique
         story within it. We want to help the next generation of tinkerers
@@ -17,7 +16,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col gap-y-4">
-        <div>
+        <div className="max-w-md">
           <h1 className="mb-2">
             Open Source Robots - <span className="text-green-500">Idea</span>
           </h1>
@@ -30,7 +29,7 @@ export default function Home() {
           </p>
         </div>
 
-        <ol className="list-decimal mb-10">
+        <ol className="list-decimal mb-10 max-w-md">
           <li>
             There had to be a considerable number of individuals / entities,
             willing to share the knowledge within technology they had built (
