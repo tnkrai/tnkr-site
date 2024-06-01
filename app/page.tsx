@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import ImageGroup from "@/components/ImageGroup";
 
+
 export default function Home() {
   return (
     <main className="flex min-h-screen gap-16 flex-col p-24">
