@@ -1,0 +1,29 @@
+name: Create production release
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  merge:
+    name: Merge commit into production branch
+    runs-on: ubuntu-22.04
+    env:
+      TARGET_BRANCH: production
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Create the target branch
+        run: |
+          if ! git ls-remote --exit-code . "origin/${{ env.TARGET_BRANCH }}" > /dev/null 2>&1; then
+            git checkout -b "${{ env.TARGET_BRANCH }}" "${{ github.ref_name }}"
+          else
+            git branch --track "${{ env.TARGET_BRANCH }}" "origin/${{ env.TARGET_BRANCH }}"
+            git checkout "${{ env.TARGET_BRANCH }}"
+            git merge --ff-only "${{ github.ref_name }}"
+          fi
+          git push --set-upstream origin "${{ env.TARGET_BRANCH }}"
