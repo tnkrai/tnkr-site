@@ -37,11 +37,11 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const fallbackImages = [
             {
-              src: "/images/vision-pro.png",
+              src: "/images/vision-pro.avif",
               alt: "Apple Vision Pro",
             },
             {
-              src: "/images/vision-pro-teardown.png",
+              src: "/images/vision-pro-teardown.avif",
               alt: "Apple Vision Pro Teardown",
             }];
             
