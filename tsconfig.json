@@ -18,8 +18,8 @@
       }
     ],
     "paths": {
-      "@/components/*": ["./app/components/*"],
-      "@/lib/*": ["./app/lib/*"]
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
