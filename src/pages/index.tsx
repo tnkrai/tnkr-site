@@ -31,7 +31,7 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
       url: string;
       alternativeText: string 
     }}) => ({
-    src: `http://${process.env.NEXT_PUBLIC_CMS_HOST}:1337` + image?.attributes?.url,
+    src: `http://${process.env.NEXT_PUBLIC_CMS_HOST}` + image?.attributes?.url,
     alt: image?.attributes?.alternativeText
   }));
 
@@ -117,7 +117,7 @@ export const getStaticProps: GetStaticProps<{ data: HomeData }> = async () => {
   
   let data = null;
     try {
-      const res = await fetch(`http://${process.env.CMS_HOST}:1337/api/landing?populate[0]=landing_body.landing_images.body_media`, {
+      const res = await fetch(`http://${process.env.CMS_HOST}/api/landing?populate[0]=landing_body.landing_images.body_media`, {
         headers
       }); 
 
