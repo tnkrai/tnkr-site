@@ -9,7 +9,7 @@ interface ImageGroupProps {
 
 export default function ImageGroup({ images }: ImageGroupProps) {
   return (
-    <div className="flex w-full h-full gap-10 overflow-x-scroll">
+    <div className="flex w-full h-full gap-10 overflow-x-scroll no-scrollbar">
       {images.map((image, index) => (
         <Image
           key={index}
