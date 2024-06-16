@@ -19,15 +19,15 @@ const AboutUs = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const ctaButtonUrl = data?.attributes?.cta?.button?.url;
   const fallbackCtaButtonUrl = "https://discord.gg/fcpeKMKn3E";
 
-  const bodyHeading = data?.attributes?.landing_body?.heading;
+  const bodyHeading = data?.attributes?.about_us_body?.heading;
   const fallbackBodyHeading = "Open Source Robots - ";
-  const bodySubheading = data?.attributes?.landing_body?.sub_heading;
+  const bodySubheading = data?.attributes?.about_us_body?.sub_heading;
   const fallbackBodySubheading = "Idea";
 
-  const bodyText = data?.attributes?.landing_body?.body[0]?.children[0]?.text;
+  const bodyText = data?.attributes?.about_us_body?.body[0]?.children[0]?.text;
   const fallbackBodyText =
     "As soon as we set off to build tinkr, our first instinct was to find a group of people who could benefit “the most” from having a tool like Tinkr. To ensure we were looking in the right places, we established 3 conditions for a given niche to be considered an ideal segment for us to plant our roots.";
-  const bodyList = data?.attributes?.landing_body?.body[1]?.children;
+  const bodyList = data?.attributes?.about_us_body?.body[1]?.children;
 
   return (
     <main className="flex min-h-screen gap-16 flex-col container">
