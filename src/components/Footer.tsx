@@ -1,4 +1,5 @@
-import Button from "@components/ui/Button";
+// import Button from "@components/ui/Button"; //TODO: Fix path alias not working in netlify build (works locally)
+import Button from "../components/ui/Button";
 import styled from "styled-components";
 
 // import { useContext } from "react";
