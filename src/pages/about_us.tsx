@@ -1,5 +1,4 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
-
 // import Button from "@components/ui/Button";
 // import ImageGroup from "@components/ImageGroup";
 
@@ -8,10 +7,9 @@ import ImageGroup from "../components/ImageGroup";
 
 import Layout from "./layout";
 
-const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const AboutUs = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const heading = data?.attributes?.heading;
-  const fallbackHeading =
-    "Tnkr.ai is a tool for exploring the source knowledge of any technology.";
+  const fallbackHeading = "About Us";
   const subheading = data?.attributes?.subheading;
   const fallbackSubheading =
     "We believe that every piece of technology, old or new, has a unique story within it. We want to help the next generation of tinkerers uncover these stories so new ones can be told.";
@@ -21,40 +19,15 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const ctaButtonUrl = data?.attributes?.cta?.button?.url;
   const fallbackCtaButtonUrl = "https://discord.gg/fcpeKMKn3E";
 
-  const bodyHeading = data?.attributes?.landing_body?.heading;
+  const bodyHeading = data?.attributes?.about_us_body?.heading;
   const fallbackBodyHeading = "Open Source Robots - ";
-  const bodySubheading = data?.attributes?.landing_body?.sub_heading;
+  const bodySubheading = data?.attributes?.about_us_body?.sub_heading;
   const fallbackBodySubheading = "Idea";
 
-  const bodyText = data?.attributes?.landing_body?.body[0]?.children[0]?.text;
+  const bodyText = data?.attributes?.about_us_body?.body[0]?.children[0]?.text;
   const fallbackBodyText =
     "As soon as we set off to build tinkr, our first instinct was to find a group of people who could benefit “the most” from having a tool like Tinkr. To ensure we were looking in the right places, we established 3 conditions for a given niche to be considered an ideal segment for us to plant our roots.";
-  const bodyList = data?.attributes?.landing_body?.body[1]?.children;
-
-  const images =
-    data?.attributes?.landing_body?.landing_images?.body_media?.data.map(
-      (image: {
-        attributes: {
-          url: string;
-          alternativeText: string;
-        };
-      }) => ({
-        src:
-          `http://${process.env.NEXT_PUBLIC_CMS_HOST}` + image?.attributes?.url,
-        alt: image?.attributes?.alternativeText,
-      }),
-    );
-
-  const fallbackImages = [
-    {
-      src: "/images/vision-pro.avif",
-      alt: "Apple Vision Pro",
-    },
-    {
-      src: "/images/vision-pro-teardown.avif",
-      alt: "Apple Vision Pro Teardown",
-    },
-  ];
+  const bodyList = data?.attributes?.about_us_body?.body[1]?.children;
 
   return (
     <main className="flex min-h-screen gap-16 flex-col container">
@@ -112,12 +85,11 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
             </>
           )}
         </ol>
-        <ImageGroup images={images ?? fallbackImages} />
       </div>
     </main>
   );
 };
-type HomeData = {
+type AboutUsData = {
   attributes: {
     createdAt: string;
     heading: string;
@@ -129,16 +101,17 @@ type HomeData = {
       };
     };
     publishedAt: string;
-    landing_body: {
+    about_us_body: {
       heading: string;
       sub_heading: string;
       body: Array<any>;
-      landing_images: any;
     };
   };
 };
 
-export const getStaticProps: GetStaticProps<{ data: HomeData }> = async () => {
+export const getStaticProps: GetStaticProps<{
+  data: AboutUsData;
+}> = async () => {
   const headers = {
     Authorization: `Bearer ${process.env.CMS_TOKEN}`,
   };
@@ -146,7 +119,7 @@ export const getStaticProps: GetStaticProps<{ data: HomeData }> = async () => {
   let data = null;
   try {
     const res = await fetch(
-      `http://${process.env.CMS_HOST}/api/landing?populate[0]=landing_body.landing_images.body_media`,
+      `http://${process.env.CMS_HOST}/api/about_us?populate[0]=about_us_body.body&populate[1]=cta.button`,
       {
         headers,
       },
@@ -170,8 +143,8 @@ export const getStaticProps: GetStaticProps<{ data: HomeData }> = async () => {
   };
 };
 
-Home.getLayout = (page: React.ReactElement) => {
+AboutUs.getLayout = (page: React.ReactElement) => {
   return <Layout>{page}</Layout>;
 };
 
-export default Home;
+export default AboutUs;

@@ -3,21 +3,21 @@
 @tailwind utilities;
 
 @layer utilities {
-    /*Hide scrollbar for Chrome, Safari, and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
+  /*Hide scrollbar for Chrome, Safari, and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
-    /* Hide scrollbar for IE, Edge, and Firefox */
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 0 0% 0%%;
     --foreground: 240 10% 3.9%;
 
     --card: 0 0% 100%;
@@ -50,7 +50,7 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --background: 0 0% 9%;
+      --background: 0 0% 0%;
       --foreground: 0 0% 100%;
 
       --card: 240 10% 3.9%;
