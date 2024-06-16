@@ -46,10 +46,10 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
             }];
             
   return (
-    <main className="flex min-h-screen gap-16 flex-col p-24 container">
+    <main className="flex min-h-screen gap-16 flex-col container">
       <div>
-        <h1 className="max-w-md mb-5">{heading ?? fallbackHeading}</h1>
-        <p className="max-w-xl">{subheading ?? fallbackSubheading}</p>
+        <h1>{heading ?? fallbackHeading}</h1>
+        <p>{subheading ?? fallbackSubheading}</p>
       </div>
       <section className=".cta">
           <Button url={ctaButtonUrl ?? fallbackCtaButtonUrl}>
@@ -57,14 +57,14 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           </Button> 
       </section>
       <div className="flex flex-col gap-y-4">
-        <div className="max-w-xl">
+        <div>
           <h1 className="mb-5">
             <span>{bodyHeading ?? fallbackBodyHeading}</span>
             <span className="text-green-500">{bodySubheading ?? fallbackBodySubheading}</span>
           </h1>
           <p>{bodyText ?? fallbackBodyText}</p>
         </div>
-        <ol className="list-decimal mb-10 max-w-xl">
+        <ol className="list-decimal mb-10">
           {bodyList ? bodyList.map((listItem: { children: Array<{ type: string; text: string; }>}, index: number) => {
             const text = listItem?.children[0]?.text;
             return (<li key={index}>{text}</li>);
