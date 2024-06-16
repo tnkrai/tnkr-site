@@ -4,7 +4,8 @@ import { ThemeProvider } from "@contexts/Theme";
 
 import classNames from "classnames";
 
-import Footer from "@components/Footer";
+// import Footer from "@components/Footer";
+import Footer from "../components/Footer";
 
 const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
