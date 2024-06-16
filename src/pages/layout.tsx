@@ -11,7 +11,7 @@ const RootLayout = ({ children }: Readonly<{children: React.ReactNode; }>) => {
   return (
     <>
       <div className={
-        classNames('mx-auto-px-3 py-6', sourceSerif.className)}
+        classNames(`mx-auto-px-3 py-6 md:px-6 md:py-10 lg:px-4 xl:py-10`, sourceSerif.className)}
       >
         {children}
       </div>
