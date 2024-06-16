@@ -89,7 +89,7 @@ const AboutUs = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
     </main>
   );
 };
-type AboutUs = {
+type AboutUsData = {
   attributes: {
     createdAt: string;
     heading: string;
@@ -109,7 +109,9 @@ type AboutUs = {
   };
 };
 
-export const getStaticProps: GetStaticProps<{ data: HomeData }> = async () => {
+export const getStaticProps: GetStaticProps<{
+  data: AboutUsData;
+}> = async () => {
   const headers = {
     Authorization: `Bearer ${process.env.CMS_TOKEN}`,
   };
