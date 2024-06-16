@@ -8,7 +8,7 @@ const sourceSerif = Source_Serif_4({
 const RootLayout = ({ children }: Readonly<{children: React.ReactNode; }>) => {
   return (
     <>
-      <div className={sourceSerif.className}>{children}</div>
+      <div style={{ backgroundColor: 'red' }} className={sourceSerif.className}>{children}</div>
     </>
   )
 }
