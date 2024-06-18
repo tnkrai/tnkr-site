@@ -42,6 +42,13 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     updateTheme(theme);
     localStorage.setItem(THEME_KEY, theme);
+    if(theme === Theme.Light){
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    }
   }, [theme]);
 
   return (
