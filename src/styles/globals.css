@@ -71,6 +71,12 @@
 @layer base {
   * {
     @apply border-border;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  *::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
 
   body {
@@ -91,4 +97,7 @@
   li {
     @apply text-secondary-foreground leading-7;
   }
+}
+
+.no-scrollbar {
 }
