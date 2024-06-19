@@ -71,12 +71,6 @@
 @layer base {
   * {
     @apply border-border;
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
-  }
-
-  *::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
   }
 
   body {
@@ -99,5 +93,15 @@
   }
 }
 
-.no-scrollbar {
+@layer utilities {
+  /*Hide scrollbar for Chrome, Safari, and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
