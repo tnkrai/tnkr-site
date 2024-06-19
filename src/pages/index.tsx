@@ -1,11 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
-
-// import Button from "@components/ui/Button";
-// import ImageGroup from "@components/ImageGroup";
-
 import Button from "../components/ui/Button";
 import ImageGroup from "../components/ImageGroup";
-
 import Layout from "./layout";
 
 const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
