@@ -57,7 +57,7 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   ];
 
   return (
-    <main className="flex min-h-screen gap-16 flex-col container">
+    <main className="flex min-h-screen gap-16 flex-col">
       <div>
         <h1>{heading ?? fallbackHeading}</h1>
         <p>{subheading ?? fallbackSubheading}</p>
