@@ -1,11 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
-
-// import Button from "@components/ui/Button";
-// import ImageGroup from "@components/ImageGroup";
-
 import Button from "../components/ui/Button";
 import ImageGroup from "../components/ImageGroup";
-
 import Layout from "./layout";
 
 const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -42,7 +37,7 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
         src:
           `http://${process.env.NEXT_PUBLIC_CMS_HOST}` + image?.attributes?.url,
         alt: image?.attributes?.alternativeText,
-      }),
+      })
     );
 
   const fallbackImages = [
@@ -57,10 +52,10 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   ];
 
   return (
-    <main className="flex min-h-screen gap-16 flex-col container">
+    <main className="flex min-h-screen gap-16 flex-col">
       <div>
-        <h1>{heading ?? fallbackHeading}</h1>
-        <p>{subheading ?? fallbackSubheading}</p>
+        <h1 className="max-w-md">{heading ?? fallbackHeading}</h1>
+        <p className="mt-2 max-w-xl">{subheading ?? fallbackSubheading}</p>
       </div>
       <section className=".cta">
         <Button url={ctaButtonUrl ?? fallbackCtaButtonUrl}>
@@ -68,7 +63,7 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </Button>
       </section>
       <div className="flex flex-col gap-y-4">
-        <div>
+        <div className="max-w-xl">
           <h1 className="mb-5">
             <span>{bodyHeading ?? fallbackBodyHeading}</span>
             <span className="text-green-500">
@@ -77,7 +72,8 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           </h1>
           <p>{bodyText ?? fallbackBodyText}</p>
         </div>
-        <ol className="list-decimal mb-10">
+
+        <ol className="list-decimal mb-10 max-w-xl">
           {bodyList ? (
             bodyList.map(
               (
@@ -87,11 +83,11 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
                     text: string;
                   }>;
                 },
-                index: number,
+                index: number
               ) => {
                 const text = listItem?.children[0]?.text;
                 return <li key={index}>{text}</li>;
-              },
+              }
             )
           ) : (
             <>
@@ -112,6 +108,7 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
             </>
           )}
         </ol>
+
         <ImageGroup images={images ?? fallbackImages} />
       </div>
     </main>
@@ -149,7 +146,7 @@ export const getStaticProps: GetStaticProps<{ data: HomeData }> = async () => {
       `http://${process.env.CMS_HOST}/api/landing?populate[0]=landing_body.landing_images.body_media`,
       {
         headers,
-      },
+      }
     );
 
     data = await res.json();
