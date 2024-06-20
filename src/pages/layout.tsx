@@ -10,14 +10,9 @@ const sourceSerif = Source_Serif_4({
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <div
-      className={cn(
-        `flex min-h-screen flex-col container`,
-        sourceSerif.className
-      )}
-    >
+    <div className={cn(`flex min-h-screen flex-col`, sourceSerif.className)}>
       <Header />
-      {children}
+      <div className="container mt-32">{children}</div>
       <Footer />
     </div>
   );
