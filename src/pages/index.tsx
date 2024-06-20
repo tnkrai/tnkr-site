@@ -58,8 +58,10 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <p className="mt-2 max-w-xl">{subheading ?? fallbackSubheading}</p>
       </div>
       <section className=".cta">
-        <Button url={ctaButtonUrl ?? fallbackCtaButtonUrl}>
-          {ctaButtonTitle ?? fallbackCtaButtonTitle}
+        <Button asChild>
+          <a href={ctaButtonUrl ?? fallbackCtaButtonUrl} target="_blank">
+            {ctaButtonTitle ?? fallbackCtaButtonTitle}
+          </a>
         </Button>
       </section>
       <div className="flex flex-col gap-y-4">
