@@ -9,7 +9,7 @@ interface MediaGroupProps {
 
 export default function MediaGroup({ assets }: MediaGroupProps) {
   return (
-    <div className="flex w-full h-full gap-5 overflow-x-scroll no-scrollbar">
+    <div className="flex flex-col md:flex-row w-full h-full gap-6 md:gap-5 overflow-x-scroll no-scrollbar">
       {assets.map((asset, index) => {
         const isImage = asset.src.includes(
           ".avif" || ".webp" || ".jpg" || ".png" || ".jpeg" || ".gif" || ".svg"
@@ -35,7 +35,7 @@ export default function MediaGroup({ assets }: MediaGroupProps) {
               autoPlay
               muted
               loop
-              className="rounded-xl aspect-auto object-cover h-[35rem] w-[35rem]"
+              className="rounded-xl aspect-auto object-cover h-[24rem] md:h-[35rem] w-[35rem]"
             />
             <p className="text-xs mt-2">{asset.alt}</p>
           </div>
