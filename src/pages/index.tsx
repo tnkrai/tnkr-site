@@ -25,23 +25,11 @@ type HomeData = {
 
 const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const heading = data?.attributes?.heading;
-  const fallbackHeading =
-    "Tnkr.ai is a tool for exploring the source knowledge of any technology.";
   const subheading = data?.attributes?.subheading;
-  const fallbackSubheading =
-    "We believe that every piece of technology, old or new, has a unique story within it. We want to help the next generation of tinkerers uncover these stories so new ones can be told.";
-
   const ctaButtonTitle = data?.attributes?.cta?.button?.title;
-  const fallbackCtaButtonTitle = "Join Our Discord";
   const ctaButtonUrl = data?.attributes?.cta?.button?.url;
-  const fallbackCtaButtonUrl = "https://discord.gg/fcpeKMKn3E";
-
   const bodyHeading = data?.attributes?.landing_body?.heading;
-  const fallbackBodyHeading = "Robots";
-
   const bodyText = data?.attributes?.landing_body?.body[0]?.children[0]?.text;
-  const fallbackBodyText =
-    "We've choosen the open-source robots as our first technology with these three conditions guiding us. Commonality, Curiosity, and Problems Solving.";
 
   const images =
     data?.attributes?.landing_body?.landing_images?.body_media?.data.map(
@@ -57,45 +45,28 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
       })
     );
 
-  const fallbackImages = [
-    {
-      src: "/videos/video-1.mp4",
-      alt: "Video 1",
-    },
-    {
-      src: "/videos/video-2.mp4",
-      alt: "Video 2",
-    },
-    {
-      src: "/videos/video-3.mp4",
-      alt: "Video 3",
-    },
-  ];
-
   return (
     <main className="flex min-h-screen gap-16 flex-col">
       <div>
-        <h1 className="max-w-md">{heading ?? fallbackHeading}</h1>
-        <p className="mt-2 max-w-xl">{subheading ?? fallbackSubheading}</p>
+        <h1 className="max-w-md">{heading}</h1>
+        <p className="mt-2 max-w-xl">{subheading}</p>
       </div>
 
       <section className=".cta">
         <Button asChild>
-          <a href={ctaButtonUrl ?? fallbackCtaButtonUrl} target="_blank">
-            {ctaButtonTitle ?? fallbackCtaButtonTitle}
+          <a href={ctaButtonUrl} target="_blank">
+            {ctaButtonTitle}
           </a>
         </Button>
       </section>
 
       <div>
         <div className="max-w-xl mb-5">
-          <h1 className="mb-2 w-full border-b py-2">
-            {bodyHeading ?? fallbackBodyHeading}
-          </h1>
-          <p>{bodyText ?? fallbackBodyText}</p>
+          <h1 className="mb-2 w-full border-b py-2">{bodyHeading}</h1>
+          <p>{bodyText}</p>
         </div>
 
-        <MediaGroup assets={images ?? fallbackImages} />
+        <MediaGroup assets={images} />
       </div>
     </main>
   );
@@ -106,7 +77,6 @@ export const getStaticProps: GetStaticProps<{ data: HomeData }> = async () => {
     Authorization: `Bearer ${process.env.CMS_TOKEN}`,
   };
 
-  let data = null;
   try {
     const res = await fetch(
       `http://${process.env.CMS_HOST}/api/landing?populate[0]=landing_body.landing_images.body_media`,
@@ -115,23 +85,18 @@ export const getStaticProps: GetStaticProps<{ data: HomeData }> = async () => {
       }
     );
 
-    data = await res.json();
+    const data = await res.json();
+
+    return {
+      props: data,
+      revalidate: 10,
+    };
   } catch (error) {
-    console.warn("couldn't render cms data");
-
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-
-    data = {
-      test: "test",
+    return {
+      notFound: true,
+      revalidate: 10,
     };
   }
-
-  return {
-    props: data,
-    revalidate: 10,
-  };
 };
 
 export default Home;
