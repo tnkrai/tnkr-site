@@ -2,6 +2,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Button from "../components/ui/Button";
 import ImageGroup from "../components/ImageGroup";
 import Layout from "./layout";
+import PageHead from "@components/PageHead";
 
 const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const heading = data?.attributes?.heading;
@@ -52,68 +53,72 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   ];
 
   return (
-    <main className="flex min-h-screen gap-16 flex-col">
-      <div>
-        <h1 className="max-w-md">{heading ?? fallbackHeading}</h1>
-        <p className="mt-2 max-w-xl">{subheading ?? fallbackSubheading}</p>
-      </div>
-      <section className=".cta">
-        <Button asChild>
-          <a href={ctaButtonUrl ?? fallbackCtaButtonUrl} target="_blank">
-            {ctaButtonTitle ?? fallbackCtaButtonTitle}
-          </a>
-        </Button>
-      </section>
-      <div className="flex flex-col gap-y-4">
-        <div className="max-w-xl">
-          <h1 className="mb-5">
-            <span>{bodyHeading ?? fallbackBodyHeading}</span>
-            <span className="text-green-500">
-              {bodySubheading ?? fallbackBodySubheading}
-            </span>
-          </h1>
-          <p>{bodyText ?? fallbackBodyText}</p>
+    <>
+      <PageHead />
+
+      <main className="flex min-h-screen gap-16 flex-col">
+        <div>
+          <h1 className="max-w-md">{heading ?? fallbackHeading}</h1>
+          <p className="mt-2 max-w-xl">{subheading ?? fallbackSubheading}</p>
         </div>
+        <section className=".cta">
+          <Button asChild>
+            <a href={ctaButtonUrl ?? fallbackCtaButtonUrl} target="_blank">
+              {ctaButtonTitle ?? fallbackCtaButtonTitle}
+            </a>
+          </Button>
+        </section>
+        <div className="flex flex-col gap-y-4">
+          <div className="max-w-xl">
+            <h1 className="mb-5">
+              <span>{bodyHeading ?? fallbackBodyHeading}</span>
+              <span className="text-green-500">
+                {bodySubheading ?? fallbackBodySubheading}
+              </span>
+            </h1>
+            <p>{bodyText ?? fallbackBodyText}</p>
+          </div>
 
-        <ol className="list-decimal mb-10 max-w-xl">
-          {bodyList ? (
-            bodyList.map(
-              (
-                listItem: {
-                  children: Array<{
-                    type: string;
-                    text: string;
-                  }>;
-                },
-                index: number
-              ) => {
-                const text = listItem?.children[0]?.text;
-                return <li key={index}>{text}</li>;
-              }
-            )
-          ) : (
-            <>
-              <li>
-                There had to be a considerable number of individuals / entities,
-                willing to share the knowledge within technology they had built
-                ( open source ).
-              </li>
-              <li>
-                There had to be a considerable number of individuals / entities
-                who are highly curious about this technology and want to tinker
-                with it, tear it down and create new things from it.
-              </li>
-              <li>
-                Problems and inadequacies in the current process of sharing and
-                tinkering with the open source knowledge.
-              </li>
-            </>
-          )}
-        </ol>
+          <ol className="list-decimal mb-10 max-w-xl">
+            {bodyList ? (
+              bodyList.map(
+                (
+                  listItem: {
+                    children: Array<{
+                      type: string;
+                      text: string;
+                    }>;
+                  },
+                  index: number
+                ) => {
+                  const text = listItem?.children[0]?.text;
+                  return <li key={index}>{text}</li>;
+                }
+              )
+            ) : (
+              <>
+                <li>
+                  There had to be a considerable number of individuals /
+                  entities, willing to share the knowledge within technology
+                  they had built ( open source ).
+                </li>
+                <li>
+                  There had to be a considerable number of individuals /
+                  entities who are highly curious about this technology and want
+                  to tinker with it, tear it down and create new things from it.
+                </li>
+                <li>
+                  Problems and inadequacies in the current process of sharing
+                  and tinkering with the open source knowledge.
+                </li>
+              </>
+            )}
+          </ol>
 
-        <ImageGroup images={images ?? fallbackImages} />
-      </div>
-    </main>
+          <ImageGroup images={images ?? fallbackImages} />
+        </div>
+      </main>
+    </>
   );
 };
 type HomeData = {
