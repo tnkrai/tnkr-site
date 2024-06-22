@@ -130,6 +130,7 @@ export const getStaticProps: GetStaticProps<{ data: HomeData }> = async () => {
 
   return {
     props: data,
+    revalidate: 10,
   };
 };
 
