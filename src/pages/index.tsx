@@ -32,17 +32,11 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const bodyText = data?.attributes?.landing_body?.body[0]?.children[0]?.text;
 
   const images =
-    data?.attributes?.landing_body?.landing_images?.body_media?.data.map(
-      (image: {
-        attributes: {
-          url: string;
-          alternativeText: string;
-        };
-      }) => ({
-        src:
-          `http://${process.env.NEXT_PUBLIC_CMS_HOST}` + image?.attributes?.url,
-        alt: image?.attributes?.alternativeText,
-      })
+    data?.attributes?.landing_body?.landing_images?.landing_images_urls?.data?.map(
+      (image: { url: string; altText: string }) => ({
+        src: image.url,
+        alt: image.altText,
+      }),
     );
 
   return (
@@ -65,7 +59,6 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           <h1 className="mb-2 w-full border-b py-2">{bodyHeading}</h1>
           <p>{bodyText}</p>
         </div>
-
         <MediaGroup assets={images} />
       </div>
     </main>
@@ -82,7 +75,7 @@ export const getStaticProps: GetStaticProps<{ data: HomeData }> = async () => {
       `http://${process.env.CMS_HOST}/api/landing?populate[0]=landing_body.landing_images.body_media`,
       {
         headers,
-      }
+      },
     );
 
     const data = await res.json();
