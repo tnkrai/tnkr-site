@@ -3,7 +3,7 @@ import Button from "./ui/Button";
 
 export default function Header() {
   return (
-    <header className="fixed w-full border-b dark:bg-black py-3">
+    <header className="fixed w-full border-b bg-white dark:bg-black py-3">
       <div className="flex justify-between items-center container">
         <Link href="/">tnkr.ai</Link>
 
