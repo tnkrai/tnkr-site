@@ -1,3 +1,5 @@
+import "../styles/globals.css";
+
 import { Source_Serif_4 } from "next/font/google";
 
 const sourceSerif = Source_Serif_4({
