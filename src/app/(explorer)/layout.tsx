@@ -1,9 +1,13 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/Avatar";
 import React from "react";
 
-export default function ExplorerLayout() {
+interface ExplorerLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function ExplorerLayout({ children }: ExplorerLayoutProps) {
   return (
-    <div className="">
+    <div>
       <div className="px-5 py-2.5 flex justify-between items-center">
         <p>tnkr.ai</p>
 
@@ -12,6 +16,7 @@ export default function ExplorerLayout() {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </div>
+      <div>{children}</div>
     </div>
   );
 }
