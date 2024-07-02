@@ -12,7 +12,10 @@ export default function ExplorerLayout({ children }: ExplorerLayoutProps) {
         <p>tnkr.ai</p>
 
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarImage
+            src="https://avatars.githubusercontent.com/u/28568610?v=4"
+            alt="@shadcn"
+          />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </div>
